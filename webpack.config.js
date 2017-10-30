@@ -17,13 +17,16 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.(css|styl)$/,
                 use: [
                     {
                         loader: 'style-loader',
                     },
                     {
                         loader: 'css-loader',
+                    },
+                    {
+                        loader: 'stylus-loader',
                     },
                 ],
             },
@@ -47,6 +50,7 @@ module.exports = {
                 ],
             },
         ],
+        resolve: ['', '.js', '.styl'],
     },
     devtool: 'inline-source-map',
     devServer: {

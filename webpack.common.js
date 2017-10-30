@@ -3,12 +3,10 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-console.log(__dirname);
-
 module.exports = {
     entry: {
         index: './src/index.js',
-        vendor: ['jquery', 'lodash'],
+        // vendor: ['jquery', 'lodash'],
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
@@ -24,20 +22,30 @@ module.exports = {
     output: {
         filename: '[name].bundle.[hash:4].js',
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
     },
-    /* externals: {
+    externals: {
         jquery: 'jQuery',
-    }, */
+    },
+    resolve: {
+        alias: {
+            '@media': path.resolve(__dirname, 'media'),
+            '@json': path.resolve(__dirname, 'json'),
+        },
+    },
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.(css|styl)$/,
                 use: [
                     {
                         loader: 'style-loader',
                     },
                     {
                         loader: 'css-loader',
+                    },
+                    {
+                        loader: 'stylus-loader',
                     },
                 ],
             },
@@ -67,6 +75,10 @@ module.exports = {
                         loader: 'file-loader',
                     },
                 ],
+            },
+            {
+                test: /\.(mp3)(\?.*)?$/,
+                loader: 'url-loader',
             },
         ],
     },

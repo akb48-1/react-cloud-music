@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --config webpack.common.js --colors",
     "start": "webpack-dev-server --open --watch --progress --config webpack.dev.js",
-    "server": "node server.js"
+    "server": "node server.js",
+    "trans": "stylus -w ./compontent/head/head.styl -o head.css"
   },
   "keywords": [],
   "author": "",
@@ -33,7 +34,10 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "style-loader": "^0.18.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
     "uglifyjs-webpack-plugin": "^0.4.6",
+    "url-loader": "^0.6.2",
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-dev-server": "^2.9.1",
