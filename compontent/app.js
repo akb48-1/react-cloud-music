@@ -4,8 +4,11 @@ import Player from './player/player';
 import AsideMenu from './asideMenu/asideMenu';
 import MusicList from './musicList/musicList';
 import './app.styl';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from '../reducers';
 
-
+const store = createStore(reducers);
 class App extends Component {
     constructor(props) {
         super(props);
@@ -59,12 +62,14 @@ class App extends Component {
         const proStr = `${proM}:${proS}`;
         const outStr = `${outM}:${outS}`;
         return (
-            <div id="app">
-                <AsideMenu />
-                <Head />
-                <MusicList />
-                <Player progress={proStr} outTime={outStr} isPlay={this.state.isPlay} click={() => this.pausedOrplay(this)} />
-            </div>
+            <Provider store={store}>
+                <div id="app">
+                    <AsideMenu />
+                    <Head />
+                    <MusicList />
+                    <Player progress={proStr} outTime={outStr} isPlay={this.state.isPlay} click={() => this.pausedOrplay(this)} />
+                </div>
+            </Provider>
         );
     }
 }
