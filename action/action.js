@@ -3,10 +3,10 @@ export const LESS = 'LESS';
 
 export const onAdd = payload => ({
     type: ADD,
-    payload
+    payload,
 });
 
 export const onLess = payload => ({
     type: LESS,
-    payload
+    payload,
 });

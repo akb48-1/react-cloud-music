@@ -1,15 +1,25 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
+const baseConfig = require('./webpack.config.js');
 
-module.exports = merge(common, {
+module.exports = merge(baseConfig, {
+    entry: {
+        index: [
+            'react-hot-loader/patch',
+            'webpack-dev-server/client',
+            'webpack/hot/only-dev-server',
+            './src/index.js',
+        ],
+        vendor: ['react', 'react-dom', 'react-router-dom'],
+    },
     devtool: 'inline-source-map',
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         port: 8000,
         hot: true,
+        inline: true,
         proxy: {
             '/search': {
                 target: 'http://localhost:3001',
@@ -19,7 +29,6 @@ module.exports = merge(common, {
         },
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
                 // 'NODE_ENV': JSON.stringify('production'),

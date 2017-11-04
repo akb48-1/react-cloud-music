@@ -4,6 +4,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import './reset.css';
 import '../src/font/iconfont.css';
+import { AppContainer } from 'react-hot-loader';
 
 // setTimeout(() => {
 //     axios.get('/search')
@@ -17,6 +18,12 @@ import '../src/font/iconfont.css';
 // }, 2000);
 
 render(
-    <App />,
+    <AppContainer>
+        <App />
+    </AppContainer>, 
     document.getElementById('root')
-)
+);
+
+if (module.hot) {
+    module.hot.accept();
+}

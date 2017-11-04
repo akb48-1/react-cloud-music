@@ -2,17 +2,33 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-    entry: {
-        app: './src/index.js',
-        // print: './src/print.js',
-    },
+    plugins: [
+        new CleanWebpackPlugin(['dist']),
+        new HtmlWebpackPlugin({
+            title: 'Production',
+            template: 'src/index.html',
+            favicon: false,
+        }),
+        new webpack.optimize.CommonsChunkPlugin({ // 提取公共模块 需最先加载公共模块
+            name: 'commonModule',
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+    ],
     output: {
-        filename: '[name].bundle.[hash:6].js',
+        filename: '[name].bundle.[hash:4].js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
+    },
+    externals: {
+        jquery: 'jQuery',
+    },
+    resolve: {
+        alias: {
+            '@media': path.resolve(__dirname, 'media'),
+            '@json': path.resolve(__dirname, 'json'),
+        },
     },
     module: {
         rules: [
@@ -29,6 +45,15 @@ module.exports = {
                         loader: 'stylus-loader',
                     },
                 ],
+            },
+            {
+                test: /\.js$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                    },
+                ],
+                exclude: /node_modules/,
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
@@ -49,24 +74,10 @@ module.exports = {
                     },
                 ],
             },
+            {
+                test: /\.(mp3)(\?.*)?$/,
+                loader: 'url-loader',
+            },
         ],
-        resolve: ['', '.js', '.styl'],
     },
-    devtool: 'inline-source-map',
-    devServer: {
-        contentBase: path.join(__dirname, 'dist'),
-        compress: true,
-        port: 9000,
-        hot: true,
-    },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new UglifyJSPlugin(),
-        new CleanWebpackPlugin(['dist']),
-        new HtmlWebpackPlugin({
-            title: 'output management',
-            template: 'src/index.html',
-            chunks: ['app'],
-        }),
-    ],
 };

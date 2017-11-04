@@ -21,7 +21,6 @@ class Head extends Component {
             width: rect.width,
             left: rect.left - header.getBoundingClientRect().left,
         });
-        this.doSomething = this.props.doSomething.bind(this);
     }
     render() {
         const { left, width } = this.state;
@@ -32,7 +31,10 @@ class Head extends Component {
             <div id="header">
                 <div className="name">
                     <div className="meun iconfont">&#xe609;</div>
-                    <div className="search iconfont" onClick={() => this.props.toLessAction({age: 30})}><a>&#xe62e;</a></div>
+                    <div className="search iconfont" 
+                        onClick={() => this.props.toLessAction({age: 30})}>
+                        <a>&#xe62e;</a>
+                    </div>
                     <h2 onClick={() => this.props.toAddAction({name: 'shusiwei', age: 18})}>云音乐</h2>
                 </div >
                 <div className="tab">
@@ -55,13 +57,13 @@ class Head extends Component {
 const mapStateToProps = state => {
     return {
         name: state.name,
-        age: state.age
-    }
-}
+        age: state.age,
+    };
+};
 
 const mapDispatchToProps = dispatch => ({
     toAddAction: payload => dispatch(onAdd(payload)),
-    toLessAction: payload => dispatch(onLess(payload))
-})
+    toLessAction: payload => dispatch(onLess(payload)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Head);

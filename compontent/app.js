@@ -21,12 +21,11 @@ class App extends Component {
         };
     }
     pausedOrplay(self) {
-        console.log(self.state.isPlay)
         if (self.state.isPlay) {
             $('#media').jPlayer('pause');
         } else {
             $('#media').jPlayer('play');
-        };
+        }
 
         self.setState((prevState) => ({
             isPlay: !prevState.isPlay,
@@ -46,7 +45,6 @@ class App extends Component {
             this.setState({
                 progress: Math.round(e.jPlayer.status.currentTime),
                 duration: Math.round(e.jPlayer.status.duration),
-                outTime: (this.state.duration) - (this.state.progress),
             });
         });
     }
@@ -54,20 +52,17 @@ class App extends Component {
         $('#media').unbind($.jPlayer.event.timeupdate);
     }
     render() {
-        const { progress, outTime, viewAside, isPlay } = this.state;
-        const proM = '' + Math.round(progress / 60);
-        const proS = progress % 60 > 9 ? '' + (progress % 60) : '0' + (progress % 60);
-        const outM = '' + Math.round(outTime / 60);
-        const outS = outTime % 60 > 9 ? '' + (outTime % 60) : '0' + (outTime % 60);
-        const proStr = `${proM}:${proS}`;
-        const outStr = `${outM}:${outS}`;
         return (
             <Provider store={store}>
                 <div id="app">
                     <AsideMenu />
                     <Head />
                     <MusicList />
-                    <Player progress={proStr} outTime={outStr} isPlay={this.state.isPlay} click={() => this.pausedOrplay(this)} />
+                    <Player progress={this.state.progress} 
+                        duration={this.state.duration} 
+                        isPlay={this.state.isPlay} 
+                        viewAside={this.state.viewAside} 
+                        pausedOrplay={() => this.pausedOrplay(this)} />
                 </div>
             </Provider>
         );

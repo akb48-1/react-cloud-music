@@ -14,5 +14,12 @@
     "react",
     "stage-2"
   ],
-  "plugins": []
+  "plugins": [
+    "react-hot-loader/babel"
+  ],
+  "env": {
+    "production":{
+      "preset":["react-optimize"]
+    }
+  }
 }

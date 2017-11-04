@@ -2,7 +2,7 @@
     .miniMusic {position:relative;height:100%;}
     .miniMusic .musicImg {width:.7rem;height:.7rem;border-radius:50%;overflow:hidden;position:absolute;left:0;top:0;}
     .miniMusic .musicImg img {width:.7rem;height:.7rem;}
-    .miniMusic .musicName {text-align:center;padding:0 .65rem 0 .75rem;;}
+    .miniMusic .musicName {text-align:center;padding:0 .65rem 0 .75rem;color:#fff;}
     .miniMusic .musicName p {position: relative;z-index: 1;height: .4rem;line-height: .4rem;overflow: hidden;white-space: nowrap;}
     .miniMusic .musicName .progress {position:relative;height:.2rem;padding-top:.08rem;}
     .miniMusic .musicName .start,.miniMusic .musicName .end {position:absolute;top:0;}
@@ -10,5 +10,6 @@
     .miniMusic .musicName .end {right:5%;}
     .miniMusic .musicControl {position:absolute;top:.15rem;right:3%;font-size:.4rem;line-height:.4rem;}
     .miniMusic .progressBar {height:4px;background-color:rgba(255,255,255,.5);width:45%;margin:0 auto;border-radius:1px;}
-    .miniMusic .progressBar .now {background-color:#31c27c;height:3px;width:20px;max-width:100%;position:relative;}
-    .miniMusic .now:after {content:'';width:3px;height:8px;display:block;background-color:rgba(255,255,255,.6);position:absolute;right:0;top:-2px;}
+    .miniMusic .progressBar .now {height:3px;width:100%;max-width:100%;position:relative;}
+     .miniMusic .progressBar .now .dtagMask {width:0;height:100%;position:absolute;left:0;top:0;background-color:#31c27c;}
+    .miniMusic .now .drag {width:3px;height:8px;display:block;background-color:rgba(255,255,255,.6);position:absolute;right:0;top:-2px;}

@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'; // 多个reducer合并在一起
 
 const initState = {
     name: '',
-    age: 1
+    age: 1,
 };
 const doSomething = (state = initState, {type, payload}) => {
     switch (type) {
