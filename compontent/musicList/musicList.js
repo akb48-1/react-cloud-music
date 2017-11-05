@@ -11,7 +11,21 @@ class MusicList extends Component {
     render() {
         return (
             <div className="musicCon">
-                <MusicItem />
+                {
+                    this.props.data.map((obj, index) => {
+                        return <MusicItem 
+                            title={obj.musicName}
+                            cover={obj.cover}
+                            singer={obj.singer}
+                            index={index}
+                            nextPlay={this.props.nextPlay}
+                            key={obj.id}
+                            playIndex={this.props.playIndex}
+                            removeList={this.props.removeList}
+                            isPlay={this.props.isPlay}
+                        />
+                    })
+                }
             </div>
         );
     }

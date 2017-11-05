@@ -7,8 +7,11 @@ import './app.styl';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../reducers';
+import { list } from '../json/data';        // 歌曲信息
 
 const store = createStore(reducers);
+let Index = 0;                              // 播放的当前歌曲index;
+const musicList = list.map((obj) => obj);   // 备份歌曲信息;
 class App extends Component {
     constructor(props) {
         super(props);
@@ -31,16 +34,31 @@ class App extends Component {
             isPlay: !prevState.isPlay,
         }));
     }
-    componentDidMount() {
+    changRange(value, duration) {
+        $('#media').jPlayer('play', (value * duration));
+    }
+    nextPlay(index) {
+        Index = index >= musicList.length ? 0 : index;
+        const self = this;
+        $('#media').jPlayer('destroy');
         $('#media').jPlayer({
             ready() {
                 $(this).jPlayer('setMedia', {
-                    mp3: require('@media/ganghaoyujianni.mp3'),
+                    mp3: musicList[Index].mediaUrl,
                 }).jPlayer('play');
+            },
+            ended() {
+                self.nextPlay(Index+1);
             },
             supplied: 'mp3',
             wmode: 'window',
         });
+    }
+    removeList(index) {
+        musicList.splice(index, 1);
+    }
+    componentDidMount() {
+        this.nextPlay(Index);
         $('#media').bind($.jPlayer.event.timeupdate, (e) => {
             this.setState({
                 progress: Math.round(e.jPlayer.status.currentTime),
@@ -57,12 +75,24 @@ class App extends Component {
                 <div id="app">
                     <AsideMenu />
                     <Head />
-                    <MusicList />
+                    <MusicList 
+                        data={ musicList }
+                        nextPlay={ this.nextPlay}
+                        playIndex={Index}
+                        removeList={this.removeList}
+                        isPlay={this.state.isPlay}
+                        pausedOrplay={() => this.pausedOrplay(this)}
+                    />
                     <Player progress={this.state.progress} 
                         duration={this.state.duration} 
                         isPlay={this.state.isPlay} 
                         viewAside={this.state.viewAside} 
-                        pausedOrplay={() => this.pausedOrplay(this)} />
+                        pausedOrplay={() => this.pausedOrplay(this)}
+                        changRange={this.changRange}
+                        cover={musicList[Index].cover}
+                        title={musicList[Index].musicName}
+                        singer={musicList[Index].singer}
+                    />
                 </div>
             </Provider>
         );

@@ -6,6 +6,7 @@ class Player extends Component {
     constructor(props) {
         super(props);
     }
+    
     render() {
         const { progress, viewAside, isPlay, duration, pausedOrplay } = this.props;
         const proM = '' + Math.floor(progress / 60);
@@ -14,27 +15,36 @@ class Player extends Component {
         const endS = duration % 60 > 9 ? '' + (duration % 60) : '0' + (duration % 60);
         const proStr = `${proM}:${proS}`;
         const endStr = `${endM}:${endS}`;
-
+        const step = isNaN(progress / duration) ? 0 : progress / duration;
+        
         return (
             <div id="player">
                 <div className="miniMusic">
                     <div className="musicImg">
-                        <img src="" alt="" />>
+                        <img src={this.props.cover} alt="" />>
                     </div>
                     <div className="musicName">
-                        <p>刚好遇见你</p>
+                        <p>{this.props.title}</p>
                         <div className="progress">
                             <span className="start">{proStr}</span>
                             <div className="progressBar">
                                 <div className="now">
                                     <div className="dtagMask" style={{'width':((progress / duration) * 100) + '%'}}></div>
                                     <div className="drag" style={{'left':((progress / duration) * 100) + '%'}}></div>
+                                    <input type="range" 
+                                        className="range" 
+                                        ref="range"
+                                        min="0" 
+                                        max="1" 
+                                        step="0.01" 
+                                        value={step} 
+                                        onInput={() => this.props.changRange(Number(this.refs.range.value), duration)}/>
                                 </div>
                             </div>
                             <span className="end">{endStr}</span>
                         </div>
                     </div>
-                    <div className={`musicControl iconfont ${isPlay ? 'icon-pause' : 'icon-bofang'}`} onClick={pausedOrplay}></div>
+                    <div className={`musicControl iconfont ${isPlay ? 'icon-pause' : 'icon-bofang'}`} onClick={() => pausedOrplay(this)}></div>
                     {isPlay}
                 </div>
             </div>

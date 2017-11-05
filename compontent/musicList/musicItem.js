@@ -14,16 +14,19 @@ class musicItem extends Component {
 
     }
     render() {
+        const { index, cover, title, singer, playIndex, removeList } = this.props;
+
         return (
-            <div className="musicList">
+            <div className={`musicList ${index === playIndex? 'playing' : ''}`} onClick={() => this.props.nextPlay(index)}>
                 <div className="musicItem" onClick={ this.upDataMusic }>
                     <div className="imgBox">
-                        <img src="music.img" alt="" />
+                        <img src={cover} alt="" />
                     </div>
                     <div className="musicText">
-                        <span className="musicName"></span>
-                        <i className="delIcon iconfont" onClick={this.delMusic}>&#xe600;</i>
+                        <span className="musicName">{title}</span>
+                        <span className="singer">{singer}</span>
                     </div>
+                    <div className="delIcon iconfont" onClick={(e) => {e.stopPropagation();removeList(index);}}>&#xe600;</div>
                 </div>
             </div>
         );

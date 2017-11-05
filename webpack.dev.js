@@ -21,10 +21,10 @@ module.exports = merge(baseConfig, {
         hot: true,
         inline: true,
         proxy: {
-            '/search': {
-                target: 'http://localhost:3001',
+            '/fcgi-bin/': {
+                target: 'http://s.music.qq.com/',
                 secure: false,
-                pathRewrite: { '^/search': '/search/get_data_list' },
+                // pathRewrite: { '^/search': '/search/get_data_list' },
             },
         },
     },
