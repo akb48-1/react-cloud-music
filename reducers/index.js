@@ -1,9 +1,8 @@
-import {ADD, LESS} from '../action/action';
+import {ADD, LESS, ASIDE} from '../action/action';
 import { combineReducers } from 'redux'; // 多个reducer合并在一起
 
 const initState = {
-    name: '',
-    age: 1,
+    showAside: false
 };
 const doSomething = (state = initState, {type, payload}) => {
     switch (type) {
@@ -11,6 +10,12 @@ const doSomething = (state = initState, {type, payload}) => {
             return payload;
 
         case LESS:
+            return {
+                ...state,
+                ...payload
+            };
+
+        case ASIDE:
             return {
                 ...state,
                 ...payload

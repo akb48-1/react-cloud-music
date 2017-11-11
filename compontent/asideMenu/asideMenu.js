@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './asideMenu.styl';
+import {connect} from 'react-redux';
+import {onAdd, onLess, toShowAside} from '../../action/action';
 
 class AsideMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            viewAside: false,
             isSign: false,
         };
     }
@@ -19,8 +20,9 @@ class AsideMenu extends Component {
 
     }
     render() {
+        console.log(this.props.showAside)
         return (
-            <div className={`asideMenu clearfix ${this.state.viewAside ? 'active' : ''}`} onClick={this.getData}>
+            <div className={`asideMenu clearfix ${this.props.showAside ? 'active' : ''}`} onClick={this.getData}>
                 <div className="aside">
                     <div className="user">
                         <a href="#" className="avatar">
@@ -31,7 +33,7 @@ class AsideMenu extends Component {
                             <span className="level radius">Lv100</span>
                             <span className="sign radius" onClick={this.goSign}>{this.state.isSign ? '签到' : '未签到'}</span>
                         </div>
-                        <a className="break iconfont" onClick={this.setViewAside}>&#xe774;</a>
+                        <a className="break iconfont" onClick={() => this.props.toAsideAction({showAside: false})}>&#xe774;</a>
                     </div>
                     <div className="settings">
                         <ul>
@@ -50,10 +52,17 @@ class AsideMenu extends Component {
                         </ul>
                     </div>
                 </div>
-                <div className="mask" onClick={this.setViewAside}></div>
+                <div className="mask" onClick={() => this.props.toAsideAction({showAside: false})}></div>
             </div>
         );
     }
 }
-
-export default AsideMenu;
+const mapStateToProps = state => {
+    return {
+        showAside: state.showAside
+    }
+}
+const mapDispatchToProps = dispatch => ({
+    toAsideAction: payload => dispatch(toShowAside(payload))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(AsideMenu);
