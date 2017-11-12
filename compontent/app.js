@@ -4,6 +4,7 @@ import Player from './player/player';
 import AsideMenu from './asideMenu/asideMenu';
 import MusicList from './musicList/musicList';
 import Find from './find/find';
+import Once from './once/once';
 import './app.styl';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -91,7 +92,7 @@ class App extends Component {
                         <Find />
                         */
                         }
-                        <Route path="/musicList" render={() => <MusicList
+                        <Route exact path="/musicList" render={() => <MusicList
                             data={ musicList }
                             nextPlay={ this.nextPlay}
                             playIndex={Index}
@@ -101,6 +102,7 @@ class App extends Component {
                         />}
                         />
                         <Route path="/find" component={Find} />
+                        <Route path="/once" component={Once}/>
                         <Player progress={this.state.progress} 
                             duration={this.state.duration} 
                             isPlay={this.state.isPlay} 

@@ -9,27 +9,48 @@ class Find extends Component {
             word: '搜索',
             hitos: ['林子祥', '薛之谦', '刘德华', '任飞扬', '许冠杰', '王京荣', '王庆茂'],
             searchList: ['春天在哪里', '头上有犄角', '小苹果', '大头儿子和小头爸爸'],
+            InputValue: ''
         };
     }
-    showStroyList() {}
-    clearList() {
+    showStroyList(value) {
+        this.setState((prevState) => {
+            return {
+                showStroy: value
+            }
+        })
+    }
+    clearSearchList(e, i) {
+        this.setState((prevState) => {
+            return {
+                searchList: prevState.searchList.filter((obj, index) => index !== i)
+            }
+        })
+    }
+    changeInputValue(e) {
         this.setState({
-            searchList: []
-        });
+            InputValue: e.target.value
+        })
+    }
+    clearText() {
+        this.refs.input.value = '';
+        this.setState({
+            InputValue: ''
+        })
     }
     render() {
-        const { showStroy, word, hitos, searchList } = this.state;
+        const { showStroy, word, hitos, searchList, InputValue } = this.state;
+        
         return (
             <div className="find">
                 <div className="searchInput">
                     <div className="inputCon">
                         <i className="icon iconfont">&#xe66e;</i>
-                        <input type="text" className={`text ${ showStroy ? 'active' : ''}`} placeholder="搜索歌曲" onClick={this.showStroyList} />>
-                        <i className="clearText iconfont" style={{display: `${showStroy && word > 0 ? 'block' : 'none'}`}}>&#xe65d;</i>
-                        <span className="closeList" style={{display: `${ showStroy ? 'block' : 'none'}`}} onClick={() => this.setState({showStroy: false})}>取消</span>
+                        <input type="text" className={`text ${ showStroy ? 'active' : ''}`} placeholder="搜索歌曲" onFocus={() => this.showStroyList(true)} ref="input" onChange={(e) => this.changeInputValue(e)}/>
+                        <i className="clearText iconfont" style={{display: `${InputValue ? 'block' : 'none'}`}} onClick={() => this.clearText()}>&#xe65d;</i>
+                        <span className="closeList" style={{display: `${ showStroy ? 'block' : 'none'}`}} onClick={() => this.showStroyList(false)}>取消</span>
                     </div>
                 </div>
-                <div className="hot">
+                <div className="hot" style={{display: `${ showStroy ? 'none' : 'block'}`}}>
                     热门搜索
                     <div className="keywords">
                         {
@@ -41,7 +62,7 @@ class Find extends Component {
                         }
                     </div>
                 </div>
-                <div className="searchList">
+                <div className="searchList" style={{display: `${showStroy ? 'block' : 'none'}`}}>
                     <ul>
                         {
                             searchList.map((obj, index) => {
@@ -49,7 +70,7 @@ class Find extends Component {
                                     <li key={index}>
                                         <i className="time iconfont">&#xe71b;</i>
                                         <span className="word">{obj}</span>
-                                        <i className="clearIcon iconfont">&#xe627;</i>
+                                        <i className="clearIcon iconfont" onClick={(e) => this.clearSearchList(e, index)}>&#xe627;</i>
                                     </li>
                                 );
                             })
