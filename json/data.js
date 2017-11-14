@@ -29,7 +29,7 @@ const list = [
         mediaUrl: 'http://dl.stream.qqmusic.qq.com/C400003MXreI4cWuH2.m4a?vkey=3CFCB494E1990496FF58CF334211F3B99ADE0CC860BBF995F0D9432B61E0730F000F8929542335EC623647F9E3F2B7BA7032985E87A113B7&guid=2205502695&uin=0&fromtag=66',
         singer: 'Perfume',
         cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000003K0xkb0zjdlt.jpg?max_age=2592000'
-    },
+    }
 ];
 
 
