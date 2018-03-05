@@ -9,12 +9,9 @@ import './app.styl';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../reducers';
-import {HashRouter as Router, Route, Link} from 'react-router-dom';
-import { list } from '../json/data';        // 歌曲信息
+import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 const store = createStore(reducers);
-let Index = 0;                              // 播放的当前歌曲index;
-const musicList = list.map((obj) => obj);   // 备份歌曲信息;
 
 class App extends Component {
     constructor(props) {
@@ -27,48 +24,8 @@ class App extends Component {
             isPlay: true,
         };
     }
-    pausedOrplay(self) {
-        if (self.state.isPlay) {
-            $('#media').jPlayer('pause');
-        } else {
-            $('#media').jPlayer('play');
-        }
-
-        self.setState((prevState) => ({
-            isPlay: !prevState.isPlay,
-        }));
-    }
     changRange(value, duration) {
         $('#media').jPlayer('play', (value * duration));
-    }
-    nextPlay(index) {
-        Index = index >= musicList.length ? 0 : index;
-        const self = this;
-        $('#media').jPlayer('destroy');
-        $('#media').jPlayer({
-            ready() {
-                $(this).jPlayer('setMedia', {
-                    mp3: musicList[Index].mediaUrl,
-                }).jPlayer('play');
-            },
-            ended() {
-                self.nextPlay(Index+1);
-            },
-            supplied: 'mp3',
-            wmode: 'window',
-        });
-    }
-    removeList(index) {
-        musicList.splice(index, 1);
-    }
-    componentDidMount() {
-        // this.nextPlay(Index);
-        // $('#media').bind($.jPlayer.event.timeupdate, (e) => {
-        //     this.setState({
-        //         progress: Math.round(e.jPlayer.status.currentTime),
-        //         duration: Math.round(e.jPlayer.status.duration),
-        //     });
-        // });
     }
     componentWillUnmount() {
         $('#media').unbind($.jPlayer.event.timeupdate);
@@ -80,39 +37,13 @@ class App extends Component {
                     <div id="app">
                         <AsideMenu />
                         <Head />
-                        { /*
-                        <MusicList 
-                            data={ musicList }
-                            nextPlay={ this.nextPlay}
-                            playIndex={Index}
-                            removeList={this.removeList}
-                            isPlay={this.state.isPlay}
-                            pausedOrplay={() => this.pausedOrplay(this)}
-                        />
-                        <Find />
-                        */
-                        }
-                        <Route exact path="/musicList" render={() => <MusicList
-                            data={ musicList }
-                            nextPlay={ this.nextPlay}
-                            playIndex={Index}
-                            removeList={this.removeList}
-                            isPlay={this.state.isPlay}
-                            pausedOrplay={() => this.pausedOrplay(this)}
-                        />}
-                        />
-                        <Route path="/find" component={Find} />
-                        <Route path="/once" component={Once}/>
-                        <Player progress={this.state.progress} 
-                            duration={this.state.duration} 
-                            isPlay={this.state.isPlay} 
-                            viewAside={this.state.viewAside} 
-                            pausedOrplay={() => this.pausedOrplay(this)}
-                            changRange={this.changRange}
-                            cover={musicList[Index].cover}
-                            title={musicList[Index].musicName}
-                            singer={musicList[Index].singer}
-                        />
+                        <Switch>
+                            <Route exact path="/" component={MusicList} />
+                            <Route path="/musicList" component={MusicList} />
+                            <Route path="/find" component={Find} />
+                            <Route path="/once" component={Once} />
+                        </Switch>
+                        <Player />
                     </div>
                 </Router>
             </Provider>

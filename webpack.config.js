@@ -26,7 +26,6 @@ module.exports = {
     },
     resolve: {
         alias: {
-            '@media': path.resolve(__dirname, 'media'),
             '@json': path.resolve(__dirname, 'json'),
         },
     },

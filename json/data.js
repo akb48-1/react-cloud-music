@@ -1,34 +1,76 @@
 const list = [
     {
-        musicName: '刚好遇见你',
+        musicName: '七月上',
         id: 1,
-        mediaUrl: 'http://dl.stream.qqmusic.qq.com/C400003jX9iw0DCQY3.m4a?vkey=47A5D33A30F2461CCA7287AADCBFD3CB27F36447FE236A9EAC59FD5BE138BA70C39348B246DB97B51E39EFD9C6C98D598A2C879F23F455D6&guid=2205502695&uin=0&fromtag=66',
-        singer: '李玉刚',
-        cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000002qBBpu2q0vL3.jpg?max_age=2592000'
+        mediaUrl: 'http://www.qyhoot.com:8080/unity/static/music/src/Jam - qiyueshang.mp3',
+        singer: 'Jam',
+        cover: 'http://www.qyhoot.com:8080/unity/static/music/cover/Jam.jpg'
     }, {
-        musicName: '小幸运',
+        musicName: '背叛情歌',
         id: 2,
-        mediaUrl: 'http://dl.stream.qqmusic.qq.com/C400004641f741WARc.m4a?vkey=304BA0072325EC8273D41B2C33B369086A0F564D5B9E8C33245B0FB9DB5C199ECC3B3DAB6A3A69D67D8AE18A790940612A0B075C25F3C3DD&guid=2205502695&uin=0&fromtag=66',
-        singer: '田馥甄',
-        cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M0000040aH1l3ykBRh.jpg?max_age=2592000'
+        mediaUrl: 'http://www.qyhoot.com:8080/unity/static/music/src/beipanqingge.mp3',
+        singer: '动力火车',
+        cover: 'http://www.qyhoot.com:8080/unity/static/music/cover/donglihuoche.jpg'
     }, {
-        musicName: '我不离开',
+        musicName: '岁月神偷',
         id: 3,
-        mediaUrl: 'http://dl.stream.qqmusic.qq.com/C4000006KmSF26dooz.m4a?vkey=B93D8DA572BDA98EF1BE47DE86D1AE11307373A0ED02931DF9E2DFE6CE75C5637FC971562B6FA34BC9F0B1F4FCC06EE00A832C28F0ACA924&guid=2205502695&uin=0&fromtag=66',
-        singer: '戴爱玲 / A-Lin',
-        cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000002wOfAk3bvAS2.jpg?max_age=2592000'
+        mediaUrl: 'http://www.qyhoot.com:8080/unity/static/music/src/jinwenqi - suiyueshnetou.mp3',
+        singer: '金玟岐',
+        cover: 'http://www.qyhoot.com:8080/unity/static/music/cover/jinwenqi.jpg'
     }, {
-        musicName: 'Faded',
+        musicName: '成都',
         id: 4,
-        mediaUrl: 'http://dl.stream.qqmusic.qq.com/C400000jF0b70x9gDf.m4a?vkey=67CBE23AEDAF5EE8CFA6CDC9D083B60B007F9B5C310FAF936A5E7D0D3BB481F3E84D37AF2B6C2C119F41E29124648B5A9782C09966B527B6&guid=2205502695&uin=0&fromtag=66',
-        singer: 'Alan Walker / Iselin Solheim',
-        cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000002Nt51E0q8Zoo.jpg?max_age=2592000'
+        mediaUrl: 'http://www.qyhoot.com:8080/unity/static/music/src/zhaolei - chengdu.mp3',
+        singer: '赵雷',
+        cover: 'http://www.qyhoot.com:8080/unity/static/music/cover/zhaolei.jpg'
     }, {
-        musicName: 'TOKYO GIRL',
+        musicName: 'faded',
         id: 5,
-        mediaUrl: 'http://dl.stream.qqmusic.qq.com/C400003MXreI4cWuH2.m4a?vkey=3CFCB494E1990496FF58CF334211F3B99ADE0CC860BBF995F0D9432B61E0730F000F8929542335EC623647F9E3F2B7BA7032985E87A113B7&guid=2205502695&uin=0&fromtag=66',
-        singer: 'Perfume',
-        cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000003K0xkb0zjdlt.jpg?max_age=2592000'
+        mediaUrl: 'http://www.qyhoot.com:8080/unity/static/music/src/faded.mp3',
+        singer: 'Alan Walker / Iselin Solheim',
+        cover: 'http://www.qyhoot.com:8080/unity/static/music/cover/Alan Walker.jpg'
+    }, {
+        musicName: 'Angelina',
+        id: 6,
+        mediaUrl: 'http://www.qyhoot.com:8080/unity/static/music/src/Angelina.mp3',
+        singer: 'Lou Bega',
+        cover: 'http://www.qyhoot.com:8080/unity/static/music/cover/Lou Bega.jpg'
+    }, {
+        musicName: '喜欢你',
+        id: 7,
+        mediaUrl: 'http://www.qyhoot.com:8080/unity/static/music/src/G.E.M. - xihuanni.mp3',
+        singer: '邓紫棋',
+        cover: 'http://www.qyhoot.com:8080/unity/static/music/cover/dengziqi.jpg'
+    }, {
+        musicName: '童话镇',
+        id: 8,
+        mediaUrl: 'http://www.qyhoot.com:8080/unity/static/music/src/tonghuazhen.mp3',
+        singer: '陈一发儿',
+        cover: 'http://www.qyhoot.com:8080/unity/static/music/cover/chenyifaer.jpg'
+    }, {
+        musicName: '凉凉',
+        id: 9,
+        mediaUrl: 'http://www.qyhoot.com:8080/unity/static/music/src/liangliang.mp3',
+        singer: '张碧晨 & 李宗伟',
+        cover: 'http://www.qyhoot.com:8080/unity/static/music/cover/yangzongwei.jpg'
+    }, {
+        musicName: '南山南',
+        id: 10,
+        mediaUrl: 'http://www.qyhoot.com:8080/unity/static/music/src/nanshannan.mp3',
+        singer: '马頔',
+        cover: 'http://www.qyhoot.com:8080/unity/static/music/cover/madi.jpg'
+    }, {
+        musicName: '农夫渔夫',
+        id: 11,
+        mediaUrl: 'http://www.qyhoot.com:8080/unity/static/music/src/nongfuyufu.mp3',
+        singer: '大乔小乔',
+        cover: 'http://www.qyhoot.com:8080/unity/static/music/cover/daqiaoxiaoqiao.jpg'
+    }, {
+        musicName: '逍遥叹',
+        id: 12,
+        mediaUrl: 'http://www.qyhoot.com:8080/unity/static/music/src/xiaoyaotan.mp3',
+        singer: '胡歌',
+        cover: 'http://www.qyhoot.com:8080/unity/static/music/cover/huge.jpg'
     }
 ];
 

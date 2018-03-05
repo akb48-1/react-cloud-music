@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './musicList.styl';
 import MusicItem from './musicItem';
+import { connect } from 'react-redux'; // 引入connect函数
 
 class MusicList extends Component {
     constructor(props) {
@@ -9,21 +10,15 @@ class MusicList extends Component {
         };
     }
     render() {
-        console.log(1);
+        
         return (
             <div className="musicCon">
                 {
-                    this.props.data.map((obj, index) => {
+                    this.props.musicList.map((obj, index) => {
                         return <MusicItem 
-                            title={obj.musicName}
-                            cover={obj.cover}
-                            singer={obj.singer}
-                            index={index}
-                            nextPlay={this.props.nextPlay}
+                            musicInfo={obj}
                             key={obj.id}
-                            playIndex={this.props.playIndex}
-                            removeList={this.props.removeList}
-                            isPlay={this.props.isPlay}
+                            index={index}
                         />
                     })
                 }
@@ -32,4 +27,14 @@ class MusicList extends Component {
     }
 }
 
-export default MusicList;
+const mapStateToProps = state => {  //将store转换成props(state)
+    return {
+        musicList: state.musicList
+    };
+};
+
+const mapDispatchToProps = dispatch => ({   //将action转换成props(方法)
+    toGetCurrent: payload => dispatch(getCurrent(payload))   // 通过this.props.toAsideAction(对象参数)调用action里的toShowAside(对象参数)方法
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MusicList);
