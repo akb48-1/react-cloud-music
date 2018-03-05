@@ -3,11 +3,12 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.js');
 
+const ROOT = path.resolve(__dirname);
+
 module.exports = merge(baseConfig, {
     entry: {
         index: [
-            'react-hot-loader/patch',
-            'webpack-dev-server/client',
+            'webpack-dev-server/client?http://localhost:8089',
             'webpack/hot/only-dev-server',
             './src/index.js',
         ],
@@ -15,11 +16,12 @@ module.exports = merge(baseConfig, {
     },
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: ROOT + '/dist',
         compress: true,
         port: 8000,
         hot: true,
         inline: true,
+        openPage: 'index.html',     // 默认打开index.html
         proxy: {
             '/fcgi-bin/': {
                 target: 'http://s.music.qq.com/',

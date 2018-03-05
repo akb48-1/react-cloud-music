@@ -4,21 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    plugins: [
-        new CleanWebpackPlugin(['dist']),
-        new HtmlWebpackPlugin({
-            title: 'Production',
-            template: 'src/index.html',
-            favicon: false,
-        }),
-        new webpack.optimize.CommonsChunkPlugin({ // 提取公共模块 需最先加载公共模块
-            name: 'commonModule',
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-    ],
     output: {
         filename: '[name].bundle.[hash:4].js',
-        path: path.resolve(__dirname, 'dist'),
+        path: ROOT + '/dist/'
         publicPath: '/',
     },
     externals: {
@@ -27,6 +15,7 @@ module.exports = {
     resolve: {
         alias: {
             '@json': path.resolve(__dirname, 'json'),
+            '@': ROOT
         },
     },
     module: {
@@ -39,11 +28,22 @@ module.exports = {
                     },
                     {
                         loader: 'css-loader',
+                        // options: {
+                        //     modules: true,   // 是否开启CSS模块 class={style.class}规则
+                        //     localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                        // }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true
+                        }
                     },
                     {
                         loader: 'stylus-loader',
                     },
                 ],
+                exclude: /node_modules/
             },
             {
                 test: /\.js$/,
@@ -58,12 +58,10 @@ module.exports = {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
                     {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].css?[hash:8]',
-                        },
+                        loader: 'file-loader?name=img/[hash].[ext]'
                     },
                 ],
+                exclude: /node_modules/
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -79,4 +77,16 @@ module.exports = {
             },
         ],
     },
+    plugins: [
+        new CleanWebpackPlugin([ROOT + '/dist/']),
+        new HtmlWebpackPlugin({
+            title: 'Production',
+            template: 'src/index.html',
+            favicon: false,
+        }),
+        new webpack.optimize.CommonsChunkPlugin({ // 提取公共模块 需最先加载公共模块
+            name: 'commonModule',
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+    ],
 };
