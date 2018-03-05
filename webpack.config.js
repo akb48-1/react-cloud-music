@@ -3,10 +3,12 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+const ROOT = path.resolve(__dirname);
+
 module.exports = {
     output: {
         filename: '[name].bundle.[hash:4].js',
-        path: ROOT + '/dist/'
+        path: ROOT + '/dist/',
         publicPath: '/',
     },
     externals: {
