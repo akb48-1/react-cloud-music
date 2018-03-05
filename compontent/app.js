@@ -27,39 +27,7 @@ class App extends Component {
     changRange(value, duration) {
         $('#media').jPlayer('play', (value * duration));
     }
-<<<<<<< HEAD
-    nextPlay(index) {
-        console.log(index)
-        Index = index >= musicList.length ? 0 : index;
-        const self = this;
-        $('#media').jPlayer('destroy');
-        $('#media').jPlayer({
-            ready() {
-                $(this).jPlayer('setMedia', {
-                    mp3: musicList[Index].mediaUrl,
-                }).jPlayer('play');
-            },
-            ended() {
-                self.nextPlay(Index+1);
-            },
-            supplied: 'mp3',
-            wmode: 'window',
-        });
-    }
-    removeList(index) {
-        musicList.splice(index, 1);
-    }
-    componentDidMount() {
-        // this.nextPlay(Index);
-        // $('#media').bind($.jPlayer.event.timeupdate, (e) => {
-        //     this.setState({
-        //         progress: Math.round(e.jPlayer.status.currentTime),
-        //         duration: Math.round(e.jPlayer.status.duration),
-        //     });
-        // });
-    }
-=======
->>>>>>> 426e2d0ccb93e1abb90a03d02e849f77d3c3fd86
+
     componentWillUnmount() {
         $('#media').unbind($.jPlayer.event.timeupdate);
     }
