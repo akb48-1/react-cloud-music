@@ -7,8 +7,6 @@ import { toShowAside, getCurrent, delMusic } from '../../action/action'; // å¼•å
 class musicItem extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-        };
     }
     render() {
         const { cover, musicName, singer } = this.props.musicInfo;

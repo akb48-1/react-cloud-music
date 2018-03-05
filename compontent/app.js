@@ -17,13 +17,6 @@ class App extends Component {
     constructor(props) {
         super(props);
     }
-<<<<<<< HEAD
-=======
-    changRange(value, duration) {
-        $('#media').jPlayer('play', (value * duration));
-    }
-
->>>>>>> 6768531f24b26d917cac4b0516d3ee82c35d66f1
     componentWillUnmount() {
         $('#media').unbind($.jPlayer.event.timeupdate);
     }
