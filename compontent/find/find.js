@@ -19,7 +19,7 @@ class Find extends Component {
             }
         })
     }
-    clearSearchList(e, i) {
+    delSearchList(e, i) {
         this.setState((prevState) => {
             return {
                 searchList: prevState.searchList.filter((obj, index) => index !== i)
@@ -70,13 +70,19 @@ class Find extends Component {
                                     <li key={index}>
                                         <i className="time iconfont">&#xe71b;</i>
                                         <span className="word">{obj}</span>
-                                        <i className="clearIcon iconfont" onClick={(e) => this.clearSearchList(e, index)}>&#xe627;</i>
+                                        <i className="clearIcon iconfont" onClick={(e) => this.delSearchList(e, index)}>&#xe627;</i>
                                     </li>
                                 );
                             })
                         }
                     </ul>
-                    <div className="tips" onClick={this.clearList}>清除搜索记录</div>
+                    <div className="tips"
+                        onClick={() => {
+                            this.setState((prevState) => ({
+                                searchList: prevState.searchList.splice()
+                            }))
+                        }}
+                    >清除搜索记录</div>
                 </div>
             </div>
         );

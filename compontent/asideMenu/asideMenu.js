@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './asideMenu.styl';
+import cat from '../../src/img/cat.png';
 import {connect} from 'react-redux';
 import {onAdd, onLess, toShowAside} from '../../action/action';
 
@@ -20,20 +21,19 @@ class AsideMenu extends Component {
 
     }
     render() {
-        console.log(this.props.showAside)
         return (
             <div className={`asideMenu clearfix ${this.props.showAside ? 'active' : ''}`} onClick={this.getData}>
                 <div className="aside">
                     <div className="user">
                         <a href="#" className="avatar">
-                            <img src="https://microzz.com/img/avatar.jpg" alt="" />
+                            <img src={cat} alt="" />
                         </a>
                         <div className="about">
                             <span className="name"><a href="#">heiheihei</a></span>
                             <span className="level radius">Lv100</span>
                             <span className="sign radius" onClick={this.goSign}>{this.state.isSign ? '签到' : '未签到'}</span>
                         </div>
-                        <a className="break iconfont" onClick={() => this.props.toAsideAction({showAside: false})}>&#xe774;</a>
+                        <a className="break iconfont" onClick={() => this.props.toAsideAction({ type: 'ASIDE', showAside: false})}>&#xe774;</a>
                     </div>
                     <div className="settings">
                         <ul>

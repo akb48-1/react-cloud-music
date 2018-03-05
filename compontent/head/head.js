@@ -10,35 +10,43 @@ class Head extends Component {
         this.state = {
             width: 0,
             left: 0,
+            count: 0
         };
         this.changeActive = this.changeActive.bind(this);
     }
     changeActive() {
         const header = document.querySelector('#header');
         const target = document.querySelectorAll('.sub-tab');
-        const rect = target[0].getBoundingClientRect();
+        
+        const hashArr = ['/musicList', '/find', '/once'];
+        const hash = window.location.hash.slice(1);
+        const activeIndex = hashArr.indexOf(hash) < 0 ? 0 : hashArr.indexOf(hash);
+        const rect = target[activeIndex].getBoundingClientRect();
 
         this.setState({
             width: rect.width,
-            left: rect.left - header.getBoundingClientRect().left,
+            left: rect.left,
         });
+    }
+    componentDidMount() {
+        this.changeActive();
     }
     render() {
         const { left, width } = this.state;
         const { showAside } = this.props;
         const appendData = this.props;
-        console.log(showAside);
+
         return (
             <div id="header">
                 <div className="name">
-                    <div className="meun iconfont" onClick={() => this.props.toAsideAction({showAside: true})}>&#xe609;</div>
-                    <div className="search iconfont">
+                    <div className="meun iconfont" onClick={() => this.props.toAsideAction({ type: 'ASIDE',showAside: true})}>&#xe609;</div>
+                    <div className="search iconfont" onClick={this.changeActive}>
                         <Link to="/find">&#xe62e;</Link>
                     </div>
                     <h2>云音乐</h2>
                 </div >
                 <div className="tab">
-                    <span className="sub-tab">
+                    <span className="sub-tab" onClick={this.changeActive}>
                         <Link to="/musicList">我的</Link>
                     </span>
                     <span className="sub-tab" onClick={this.changeActive}>

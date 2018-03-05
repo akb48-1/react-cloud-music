@@ -9,7 +9,7 @@ class Once extends Component {
     render() {
         return(
             <div className="once">
-                一次就好，我带你走遍天涯海角。
+                <div className="once-content">敬请期待！</div>
             </div>
         )
     }
