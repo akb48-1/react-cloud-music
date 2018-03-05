@@ -42,6 +42,7 @@ class App extends Component {
         $('#media').jPlayer('play', (value * duration));
     }
     nextPlay(index) {
+        console.log(index)
         Index = index >= musicList.length ? 0 : index;
         const self = this;
         $('#media').jPlayer('destroy');
