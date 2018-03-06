@@ -30,6 +30,8 @@ class musicItem extends Component {
                         <span className="musicName">{musicName}</span>
                         <span className="singer">{singer}</span>
                     </div>
+                    {
+                        /*
                     <div className="delIcon iconfont" 
                         onClick={(e) => { e.stopPropagation();
                         todelMusic({
@@ -37,6 +39,8 @@ class musicItem extends Component {
                             index
                         })}}
                         >&#xe600;</div>
+                        */
+                    }
                 </div>
             </div>
         );
