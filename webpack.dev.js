@@ -22,7 +22,7 @@ module.exports = merge(baseConfig, {
         port: 8000,
         hot: true,
         inline: true,
-        openPage: 'index.html',     // 默认打开index.html
+        // openPage: 'index.html',     // 默认打开index.html
         proxy: {
             '/fcgi-bin/': {
                 target: 'http://s.music.qq.com/',

@@ -39,7 +39,7 @@ class Head extends Component {
         return (
             <div id="header">
                 <div className="name">
-                    <div className="meun iconfont" onClick={() => this.props.toAsideAction({ type: 'ASIDE',showAside: true})}>&#xe609;</div>
+                    <div className="meun iconfont" onClick={() => this.props.toAsideAction({ type: 'ASIDE', showAside: true})}>&#xe609;</div>
                     <div className="search iconfont" onClick={this.changeActive}>
                         <Link to="/find">&#xe62e;</Link>
                     </div>
