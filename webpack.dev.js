@@ -8,8 +8,9 @@ const ROOT = path.resolve(__dirname);
 module.exports = merge(baseConfig, {
     entry: {
         index: [
-            'webpack-dev-server/client?http://localhost:8089',
+            'webpack-dev-server/client?http://localhost:8000',
             'webpack/hot/only-dev-server',
+            'react-hot-loader/patch',
             './src/index.js',
         ],
         vendor: ['react', 'react-dom', 'react-router-dom'],
